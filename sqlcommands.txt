@@ -1,0 +1,107 @@
+/* login credentials and roles */
+
+create table LoginDetails
+(
+Username varchar(10) NOT NULL PRIMARY KEY,
+Password number NOT NULL,
+Role varchar(25) NOT NULL
+);
+
+create table ProductionManager
+(
+
+Username varchar(10) NOT NULL PRIMARY KEY,
+Name varchar(25) NOT NULL,
+Gender varchar(10) NULL,
+DOB Date NULL,
+Address varchar(100) NULL,
+Email varchar(100) NOT NULL UNIQUE,
+Phone number NOT NULL  ,
+FOREIGN KEY (username) REFERENCES LOGINDETAILS(username)
+ON DELETE CASCADE
+
+
+);
+create table SUPERVISOR
+(
+
+Username varchar(10) NOT NULL PRIMARY KEY,
+Name varchar(25) NOT NULL,
+Gender varchar(10) NULL,
+DOB Date NULL,
+Address varchar(100) NULL,
+Email varchar(100) NOT NULL UNIQUE,
+Phone number NOT NULL  ,
+FOREIGN KEY (username) REFERENCES LOGINDETAILS(username)
+ON DELETE CASCADE
+
+
+);
+
+insert into logindetails values ('C4_admin',9999,'ADMIN'); //admin credentials
+////////////////////////////////////////////////////////
+create table orders
+(
+orderId varchar(20),
+ordername varchar(25),
+startDate date,
+endDate date,
+company varchar(20),
+quantity number,
+unit varchar(10),
+supervisorId varchar(20),
+managerId varchar(20),
+gotResources number(1),
+allocated number(1),
+manpower number,
+duedate date
+);
+
+//////////////////////////////////////////////////////////
+create table machines
+(
+machineno varchar(40),
+machinename varchar(40),
+quantity number
+);
+ 
+
+
+//////////////////////////////////////////////
+create table rawmaterials
+(
+rawno varchar(40),
+rawname varchar(40),
+rawquantity number,
+orderId varchar(40)
+);
+
+///////////////////////////////////////////
+create table tasks
+(
+machineno varchar(20),
+orderId varchar(20),
+begin date,
+end date
+);
+
+//////////////////////////////////////////
+
+create table machine_allocation
+(
+machineno varchar(20),
+machinename varchar(25),
+orderId varchar(20)
+);
+
+
+///////////////////////////////////////////////
+create table requests
+(
+orderid varchar2(40),
+sender varchar2(40),
+receiver varchar2(40),
+message varchar2(40),
+ondate Date,
+addressed number
+);
